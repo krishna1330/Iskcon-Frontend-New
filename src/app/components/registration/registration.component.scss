@@ -1,0 +1,38 @@
+.body {
+    background: linear-gradient(135deg, #0093E9 0%, #80D0C7 50%, #EE0979 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    margin-top: 20px;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section h3 {
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+}
+
+label {
+    font-size: small;
+    font-weight: 400;
+}
+
+.img-thumbnail {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}

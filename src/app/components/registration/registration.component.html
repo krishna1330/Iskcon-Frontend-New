@@ -1,0 +1,222 @@
+<div class="container">
+    <h2 class="text-center mb-4">ISKCON</h2>
+
+    <form [formGroup]="registrationForm">
+        <!-- Personal Details -->
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required
+                        formControlName="firstName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required
+                        formControlName="lastName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" placeholder="Select your date of birth" required
+                        formControlName="dob">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="profilePhoto">Profile Photo</label>
+                    <input type="file" class="form-control-file" id="profilePhoto"
+                        (change)="onProfilePhotoSelected($event)" required formControlName="photo">
+                    <img [src]="profilePhotoUrl" *ngIf="profilePhotoUrl" alt="Profile Photo" class="img-thumbnail mt-2">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="email">Email ID</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required
+                        formControlName="email">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required
+                        formControlName="phone">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="signaturePhoto">Signature Photo</label>
+                    <input type="file" class="form-control-file" id="signaturePhoto"
+                        (change)="onSignaturePhotoSelected($event)" required formControlName="signature">
+                    <img [src]="signaturePhotoUrl" *ngIf="signaturePhotoUrl" alt="Signature Photo"
+                        class="img-thumbnail mt-2">
+                </div>
+            </div>
+
+            <div class="form-group form-check col-md-3">
+                <input type="checkbox" class="form-check-input" id="workingProfessional"
+                    (change)="toggleOccupationFields()">
+                <label class="form-check-label" for="workingProfessional">Working Professional</label>
+            </div>
+            <div id="occupationFields" style="display:none;">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="occupation">Occupation</label>
+                        <input type="text" class="form-control" id="occupation" placeholder="Enter your occupation"
+                            formControlName="occupation">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="companyName">Company Name</label>
+                        <input type="text" class="form-control" id="companyName" placeholder="Enter your company name"
+                            formControlName="companyName">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Details -->
+        <div class="form-section">
+            <h3>Family Details</h3>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="fatherName">Father's Name</label>
+                    <input type="text" class="form-control" id="fatherName" placeholder="Enter your father name"
+                        formControlName="fatherName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="fatherDob">Father's Date of Birth</label>
+                    <input type="date" class="form-control" id="fatherDob" formControlName="fatherDOB">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="motherName">Mother's Name</label>
+                    <input type="text" class="form-control" id="motherName" placeholder="Enter your mother name"
+                        formControlName="motherName">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="motherDob">Mother's Date of Birth</label>
+                    <input type="date" class="form-control" id="motherDob" formControlName="motherDOB">
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="married" (change)="toggleSpouseFields()">
+                <label class="form-check-label" for="married">Married</label>
+            </div>
+            <div id="spouseFields" style="display:none;">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="spouseName">Spouse's Name</label>
+                        <input type="text" class="form-control" id="spouseName" placeholder="Enter your spouse name"
+                            formControlName="spouseName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="spouseDob">Spouse's Date of Birth</label>
+                        <input type="date" class="form-control" id="spouseDob" formControlName="spouseDOB">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="hasChildren" (change)="toggleChildrenFields()">
+                <label class="form-check-label" for="hasChildren">Has Children</label>
+            </div>
+            <div id="childrenFields" style="display:none;">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="child1Name">Child 1 Name</label>
+                        <input type="text" class="form-control" id="child1Name" placeholder="Enter your 1st child name"
+                            formControlName="child1_Name">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="child1Dob">Child 1 Date of Birth</label>
+                        <input type="date" class="form-control" id="child1Dob" formControlName="child1_DOB">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="child2Name">Child 2 Name</label>
+                        <input type="text" class="form-control" id="child2Name" placeholder="Enter your 2nd child name"
+                            formControlName="child2_Name">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="child2Dob">Child 2 Date of Birth</label>
+                        <input type="date" class="form-control" id="child2Dob" formControlName="child2_DOB">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resindece Address Details -->
+        <div class="form-section">
+            <h3>Residence Address Details</h3>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="resDoorNumber">Residence Door Number</label>
+                    <input type="text" class="form-control" id="resDoorNumber" required
+                        placeholder="Enter your door number" formControlName="rDoorNumber">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resStreetName">Residence Street</label>
+                    <input type="text" class="form-control" id="resStreetName" required
+                        placeholder="Enter your street name" formControlName="rStreet">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resLandmark">Residence Landmark</label>
+                    <input type="text" class="form-control" id="resLandmark" placeholder="Enter your landmark"
+                        formControlName="rLandmark">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resDistrict">Residence District</label>
+                    <input type="text" class="form-control" id="resDistrict" required
+                        placeholder="Enter your district name" formControlName="rDistrict">
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="resPincode">Residence Pincode</label>
+                    <input type="text" class="form-control" id="resPincode" required placeholder="Enter your pincode"
+                        formControlName="rPincode">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resState">Residence State</label>
+                    <input type="text" class="form-control" id="resState" required placeholder="Enter your state name"
+                        formControlName="rState">
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Address Details -->
+        <div class="form-section" style="display:none;" id="workAddressFields">
+            <h3>Work Address Details</h3>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="resDoorNumber">Door Number</label>
+                    <input type="text" class="form-control" id="resDoorNumber" required
+                        placeholder="Enter your door number" formControlName="wDoorNumber">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resStreetName">Street</label>
+                    <input type="text" class="form-control" id="resStreetName" required
+                        placeholder="Enter your street name" formControlName="wStreet">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resLandmark">Landmark</label>
+                    <input type="text" class="form-control" id="resLandmark" placeholder="Enter your landmark"
+                        formControlName="wLandmark">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resDistrict">District</label>
+                    <input type="text" class="form-control" id="resDistrict" required
+                        placeholder="Enter your district name" formControlName="wDistrict">
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="resPincode">Pincode</label>
+                    <input type="text" class="form-control" id="resPincode" required placeholder="Enter your pincode"
+                        formControlName="wPincode">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="resState">State</label>
+                    <input type="text" class="form-control" id="resState" required placeholder="Enter your state name"
+                        formControlName="wState">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" (click)="onRegister()">Register</button>
+    </form>
+</div>
